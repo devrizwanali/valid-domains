@@ -2,7 +2,10 @@
   <div class="form">
     <div>
       <label for="email" class="email-label">Your Email:</label>
-      <input class="text-input"  name="email" type="text">
+              
+      <input class="text-input"  name="email" type="text" data-action="keyup->page#domain" data-page-target="domain" >
     </div>
+
+    <ul class="mt-3 ps-3" data-page-target="domains"></ul>
   </div>
 </section>
