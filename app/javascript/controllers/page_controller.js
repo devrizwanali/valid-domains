@@ -2,6 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ['domains', 'domain']
+  static values = {
+    domainsList: Array
+  }
+
   connect() {
     let _this = this;
     this.fetchDomains();
@@ -38,11 +42,24 @@ export default class extends Controller {
 
   fetchDomains() {
     let _this = this;
+    let urls = [];
     fetch('/domains').then(response => response.json()).then(re => {
-      this.domainsTarget
       re.forEach(function(domain) {
-        _this.addURL(domain.name)
+        if(!(_this.domainsListValue.includes(domain.name)))
+          urls.push(domain.name)
       })
+      let list = urls.concat(_this.domainsListValue)
+      _this.domainsListValue = list
+
+      if(urls.length > 0)
+        _this.populateDomains(urls)
+    })
+  }
+
+  populateDomains(urls) {
+    let _this = this;
+    urls.forEach(function(url) {
+      _this.addURL(url)
     })
   }
 
