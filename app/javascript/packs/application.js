@@ -13,7 +13,7 @@ import "controllers"
 require("@popperjs/core")
 
 import "bootstrap"
-require("../stylesheets/application.scss")
+import "../stylesheets/application.scss"
 
 Rails.start()
 Turbolinks.start()
