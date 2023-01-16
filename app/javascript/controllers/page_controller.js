@@ -79,6 +79,9 @@ export default class extends Controller {
     fetch(`/domains.json`, options)
       .then(response => response.json())
       .then(res => {
+        let urls = _this.domainsListValue
+        urls.push(res.name)
+        _this.domainsListValue = urls
         _this.addURL(res.name)
         _this.domainTarget.value = ''
       });
